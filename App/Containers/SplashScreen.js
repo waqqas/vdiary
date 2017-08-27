@@ -3,6 +3,7 @@ import {Image, View} from "react-native"
 import {Button} from 'react-native-elements'
 import firebase from '../Libs/Firebase'
 import {NavigationActions} from 'react-navigation'
+
 // Styles
 import {Colors, Images} from '../Themes'
 import {connect} from 'react-redux'

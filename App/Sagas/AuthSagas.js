@@ -1,20 +1,24 @@
 import {call} from 'redux-saga/effects'
 import AppConfig from '../Config/AppConfig'
+// const FBSDK = require('react-native-fbsdk');
+// const {
+//     LoginManager,
+// } = FBSDK;
 
 const loginUser = function* loginUser(firebase) {
 
     try {
-        // const {type, token} = yield call(Facebook.logInWithReadPermissionsAsync, AppConfig.facebook.appId, AppConfig.facebook.options)
+        // const result = yield call(LoginManager.logInWithReadPermissions, AppConfig.facebook.options)
 
-        const type = 'facebook.com'
-        const token = '1234'
+        // console.log('results: ', result)
+        // if (result.isCancelled === false) {
 
-        if (type === 'success') {
-            const credential = firebase.auth.FacebookAuthProvider.credential(token)
+
+            // const credential = firebase.auth.FacebookAuthProvider.credential(token)
 
             // Sign in with credential from the Facebook user.
-            firebase.auth().signInWithCredential(credential)
-        }
+            // firebase.auth().signInWithCredential(credential)
+        // }
     }
     catch (e) {
     }
