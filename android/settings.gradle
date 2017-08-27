@@ -1,0 +1,3 @@
+rootProject.name = 'vdiary'
+
+include ':app'
