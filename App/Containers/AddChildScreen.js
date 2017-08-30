@@ -1,8 +1,10 @@
 import React, {Component} from "react"
-import {View} from "react-native"
-import { Header, FormLabel, FormInput, ButtonGroup } from 'react-native-elements'
+import {Text, TouchableOpacity, View} from "react-native"
+import {ButtonGroup, FormInput, FormLabel, Header} from 'react-native-elements'
 import {connect} from 'react-redux'
 import _ from 'lodash'
+import moment from 'moment'
+import DateTimePicker from 'react-native-modal-datetime-picker'
 // Styles
 import {Colors} from '../Themes'
 import styles from './Styles/AddChildScreenStyle'
@@ -42,7 +44,10 @@ class AddChildScreen extends Component {
             form: {
                 name: null,
                 gender: null,
-                dob: null
+                dob: new Date()
+            },
+            picker: {
+                dob: false
             },
             adding: false
         }
@@ -65,17 +70,37 @@ class AddChildScreen extends Component {
         this.props.navigation.goBack()
     }
 
-    onValueChange(field, value){
+    onValueChange(field, value) {
         const {form} = this.state
         form[field] = value
         this.setState({form})
     }
 
-    onIndexChange(field, index)
-    {
+    onIndexChange(field, index) {
         const {form} = this.state
         form[field] = this[field][index]
         this.setState({form})
+    }
+
+    onDatePicked(field, value) {
+        const {form} = this.state
+        form[field] = value
+        this.setState({form})
+        this.hideDatePicker(field)
+    }
+
+    showDatePicker(pickerName) {
+        const {picker} = this.state
+        picker[pickerName] = true
+
+        this.setState({picker})
+    }
+
+    hideDatePicker(pickerName) {
+        const {picker} = this.state
+        picker[pickerName] = false
+
+        this.setState({picker})
     }
 
     render() {
@@ -91,7 +116,18 @@ class AddChildScreen extends Component {
                         onPress={this.onIndexChange.bind(this, 'gender')}
                         selectedIndex={this.gender.indexOf(this.state.form.gender)}
                         buttons={this.gender.map((value) => (_.upperFirst(value)))}
-                        containerStyle={{height: 50}} />
+                        containerStyle={{height: 50}}/>
+                    <FormLabel>Date of birth</FormLabel>
+                    <TouchableOpacity onPress={this.showDatePicker.bind(this, 'dob')}>
+                        <FormLabel>{moment(this.state.form.dob).format('MMMM Do YYYY')}</FormLabel>
+                    </TouchableOpacity>
+                    <DateTimePicker
+                        isVisible={this.state.picker.dob}
+                        onConfirm={this.onDatePicked.bind(this, 'dob')}
+                        date={this.state.form.dob}
+                        onCancel={this.hideDatePicker.bind(this, 'dob')}
+                        titleIOS='Pick date of birth'
+                    />
                 </View>
             </View>
         )
