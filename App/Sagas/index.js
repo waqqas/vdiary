@@ -17,8 +17,6 @@ import {addRef, removeRef, watchFirebase, firebaseChannel} from "./FirebaseSagas
 
 /* ------------- Connect Types To Sagas ------------- */
 
-firebase.initializeApp(AppConfig.firebaseConfig)
-
 const root = function* root() {
     yield [
         takeLatest(StartupTypes.STARTUP, startup, ),

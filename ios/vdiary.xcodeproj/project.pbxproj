@@ -319,7 +319,6 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A28EDC91F535BAC00C0374E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "vdiary/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A4C5ABA1F53472100DB54A2 /* vdiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = vdiary.entitlements; path = vdiary/vdiary.entitlements; sourceTree = "<group>"; };
-		7A4C5AE71F534CFB00DB54A2 /* libRNFirebase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRNFirebase.a; path = "Pods/../build/Debug-iphoneos/RNFirebase/libRNFirebase.a"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		847EDF7FD0324E97A47691FF /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9495DB7C3CBF434EB4114187 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -551,7 +550,6 @@
 		7A4C5A591F52B6A200DB54A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7A4C5AE71F534CFB00DB54A2 /* libRNFirebase.a */,
 				6F56FA02D7A80FD6367E8BCA /* libPods-vdiary.a */,
 			);
 			name = Frameworks;
@@ -1144,9 +1142,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-vdiary/Pods-vdiary-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

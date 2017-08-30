@@ -102,7 +102,7 @@ class Drawer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: (firebase.apps.length > 0 && firebase.auth().currentUser !== null)
+        loggedIn: (firebase.auth().currentUser !== null)
     }
 }
 

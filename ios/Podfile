@@ -20,11 +20,29 @@ target 'vdiary' do
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Storage'
 
-  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
-  pod 'React', :path => '../node_modules/react-native', :subspecs => [
-    'BatchedBridge', # Required For React Native 0.45.0+
-    'Core',
-    # Add any other subspecs you want to use in your project
-  ]
+  pod 'Bolts'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
+
+  pod 'React',
+    :path => "../node_modules/react-native",
+    :subspecs => [
+      "Core",
+      "ART",
+      "RCTActionSheet",
+      "RCTAnimation",
+      "RCTCameraRoll",
+      "RCTGeolocation",
+      "RCTImage",
+      "RCTNetwork",
+      "RCTText",
+      "RCTVibration",
+      "RCTWebSocket",
+      "DevSupport",
+      "BatchedBridge"
+    ]
+  pod 'Yoga',
+    :path => "../node_modules/react-native/ReactCommon/yoga"
 
 end

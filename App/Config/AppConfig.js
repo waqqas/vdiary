@@ -10,6 +10,6 @@ export default {
     },
     facebook: {
         appId: '2157727797793884',
-        options: { behavior: 'web' }
+        options: { behavior: 'native' }
     }
 }

@@ -1,14 +1,15 @@
 import {call} from 'redux-saga/effects'
 import AppConfig from '../Config/AppConfig'
-// const FBSDK = require('react-native-fbsdk');
-// const {
-//     LoginManager,
-// } = FBSDK;
+const FBSDK = require('react-native-fbsdk');
+const {
+    LoginManager,
+} = FBSDK;
 
 const loginUser = function* loginUser(firebase) {
 
+    console.log('login', LoginManager)
     try {
-        // const result = yield call(LoginManager.logInWithReadPermissions, AppConfig.facebook.options)
+        LoginManager.logInWithReadPermissions(['public_profile'])
 
         // console.log('results: ', result)
         // if (result.isCancelled === false) {
@@ -21,6 +22,7 @@ const loginUser = function* loginUser(firebase) {
         // }
     }
     catch (e) {
+        console.log('e:', e)
     }
 }
 

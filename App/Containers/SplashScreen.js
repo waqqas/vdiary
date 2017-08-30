@@ -3,6 +3,10 @@ import {Image, View} from "react-native"
 import {Button} from 'react-native-elements'
 import firebase from '../Libs/Firebase'
 import {NavigationActions} from 'react-navigation'
+const FBSDK = require('react-native-fbsdk');
+const {
+    LoginManager,
+} = FBSDK;
 
 // Styles
 import {Colors, Images} from '../Themes'
@@ -49,7 +53,21 @@ class SplashScreen extends Component {
 
 
     loginUserWithFacebook() {
-        this.props.loginUserWithFacebook()
+        LoginManager.logInWithReadPermissions(['public_profile']).then(
+            function(result) {
+                if (result.isCancelled) {
+                    alert('Login was cancelled');
+                } else {
+                    alert('Login was successful with permissions: '
+                        + result.grantedPermissions.toString());
+                }
+            },
+            function(error) {
+                alert('Login failed with error: ' + error);
+            }
+        );
+
+        //this.props.loginUserWithFacebook()
     }
 
     render() {
