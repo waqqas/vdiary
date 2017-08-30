@@ -4,10 +4,10 @@ import {Header} from 'react-native-elements'
 import {connect} from 'react-redux'
 // Styles
 import {Colors} from '../Themes'
-import styles from './Styles/HomeScreenStyle'
+import styles from './Styles/VaccinationCardScreenStyle'
 import NavItem from '../Components/NavItem'
 
-class HomeScreen extends Component {
+class VaccinationCardScreen extends Component {
     static navigationOptions = ({navigation}) => {
 
         let title = 'Home'
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({})
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(VaccinationCardScreen)

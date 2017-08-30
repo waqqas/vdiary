@@ -2,8 +2,9 @@ import {StyleSheet} from 'react-native'
 import {ApplicationStyles, Colors} from '../../Themes/'
 
 export default StyleSheet.create({
-  ...ApplicationStyles.screen,
-  menuTitle: {
-    color: Colors.charcoal
-  }
+    ...ApplicationStyles.screen,
+    ...ApplicationStyles.list,
+    menuTitle: {
+        color: Colors.charcoal
+    }
 })

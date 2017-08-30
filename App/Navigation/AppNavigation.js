@@ -3,7 +3,7 @@ import {StackNavigator, DrawerNavigator} from 'react-navigation'
 
 import styles from './Styles/NavigationStyle'
 import SplashScreen from "../Containers/SplashScreen";
-import HomeScreen from "../Containers/HomeScreen";
+import VaccinationCardScreen from "../Containers/VaccinationCardScreen";
 import Drawer from "../Containers/Drawer";
 import ChildListScreen from "../Containers/ChildListScreen";
 import AddChildScreen from "../Containers/AddChildScreen";
@@ -13,7 +13,7 @@ const PrimaryNav = StackNavigator({
     SplashScreen: {screen: SplashScreen},
     ChildListScreen: {screen: ChildListScreen},
     AddChildScreen: {screen: AddChildScreen},
-    HomeScreen: {screen: HomeScreen}
+    VaccinationCardScreen: {screen: VaccinationCardScreen}
 }, {
     // Default config for all screens
     headerMode: 'float',

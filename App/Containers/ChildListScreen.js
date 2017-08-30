@@ -97,8 +97,6 @@ class ChildListScreen extends Component {
     }
 
     renderChildList() {
-        // const children = this.state.searchText !== '' ? _.filter(this.props.children, (child) => ( child.client.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1)) : this.props.children
-
         return (<List style={styles.listContainer}>
             <ListView
                 renderRow={this.renderChild.bind(this)}

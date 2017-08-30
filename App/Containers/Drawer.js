@@ -7,7 +7,7 @@ import firebase from '../Libs/Firebase'
 // Styles
 import styles from './Styles/DrawerStyle'
 import AuthActions from '../Redux/AuthRedux'
-import {Images} from '../Themes'
+import {Colors} from '../Themes'
 
 
 class Drawer extends Component {
@@ -85,12 +85,37 @@ class Drawer extends Component {
         )
     }
 
+    onShowChild(child) {
+        this.props.navigation.navigate('VaccinationCardScreen', {child})
+    }
+
+    renderChild(child, sectionId, key) {
+        return (
+            <ListItem
+                style={styles.listItem}
+                chevronColor={Colors.snow}
+                onPress={this.onShowChild.bind(this, child)}
+                key={key}
+                title={child.name}
+                titleContainerStyle={styles.listTitleContainer}
+                titleStyle={styles.listTitle}
+            />)
+    }
+
+    renderChildList() {
+        return (<List style={styles.listContainer}>
+            <ListView
+                renderRow={this.renderChild.bind(this)}
+                dataSource={this.ds.cloneWithRows(this.props.children)}
+                enableEmptySections
+            />
+        </List>)
+    }
+
     render() {
         return (
             <View style={styles.mainContainer}>
-                <View style={{alignItems: 'center'}}>
-                    <Image source={Images.background} style={{height: 50, width: 50}}/>
-                </View>
+                {this.renderChildList()}
                 <List>
                     <ListView enableEmptySections renderRow={this.renderMenu.bind(this)}
                               dataSource={this.ds.cloneWithRows(this.state.menuItems)}/>
@@ -102,7 +127,8 @@ class Drawer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: (firebase.auth().currentUser !== null)
+        loggedIn: (firebase.auth().currentUser !== null),
+        children: state.firebase.children
     }
 }
 
