@@ -21,7 +21,7 @@ const root = function* root() {
     yield [
         takeLatest(StartupTypes.STARTUP, startup, ),
         takeLatest(StartupTypes.STARTUP_SUCCESS, startupSuccess),
-        takeLatest(AuthTypes.LOGIN_USER_WITH_FACEBOOK, loginUser, firebase),
+        takeLatest(AuthTypes.LOGIN_USER, loginUser, firebase),
         takeLatest(AuthTypes.LOGOUT_USER, logoutUser, firebase),
         takeLatest(ChildTypes.ADD_CHILD, addChild, firebase),
         takeLatest(ChildTypes.UPDATE_CHILD, updateChild, firebase),

@@ -46,8 +46,11 @@ class ChildListScreen extends Component {
     }
 
     componentDidMount() {
-        const userId = firebase.auth().currentUser.uid
-        this.childrenListRef = firebase.database().ref(`children/${userId}`)
+        const currentUser = firebase.auth().currentUser
+
+        console.log('user: ', currentUser)
+
+        this.childrenListRef = firebase.database().ref(`children/${currentUser.uid}`)
 
         this.props.addRef('children', this.childrenListRef)
 

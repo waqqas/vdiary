@@ -15,17 +15,24 @@ class RootContainer extends Component {
         if (!ReduxPersist.active) {
             this.props.startup()
         }
+
+        // Listen for authentication state to change.
+        firebase.auth().onAuthStateChanged((user) => {
+            console.log('onAuthStateChanged: ', user)
+            this.props.updateUser()
+        })
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.startupSuccess !== this.props.startupSuccess) {
-
-            // Listen for authentication state to change.
-            firebase.auth().onAuthStateChanged((user) => {
-                this.props.updateUser()
-            })
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.startupSuccess !== this.props.startupSuccess) {
+    //
+    //         // Listen for authentication state to change.
+    //         firebase.auth().onAuthStateChanged((user) => {
+    //             console.log('onAuthStateChanged: ', user)
+    //             this.props.updateUser()
+    //         })
+    //     }
+    // }
 
     render() {
         return (

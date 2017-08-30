@@ -5,26 +5,6 @@ target 'vdiary' do
   # use_frameworks!
 
   # Pods for vdiary
-  # Required by RNFirebase
-  pod 'Firebase/Core'
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
-
-  # [OPTIONAL PODS] - comment out pods for firebase products you won't be using.
-  pod 'Firebase/AdMob'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Crash'
-  pod 'Firebase/Database'
-  pod 'Firebase/DynamicLinks'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/RemoteConfig'
-  pod 'Firebase/Storage'
-
-  pod 'Bolts'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
-
   pod 'React',
     :path => "../node_modules/react-native",
     :subspecs => [
@@ -46,3 +26,23 @@ target 'vdiary' do
     :path => "../node_modules/react-native/ReactCommon/yoga"
 
 end
+
+# Required by RNFirebase
+pod 'Firebase/Core'
+pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
+# [OPTIONAL PODS] - comment out pods for firebase products you won't be using.
+pod 'Firebase/AdMob'
+pod 'Firebase/Analytics'
+pod 'Firebase/Auth'
+pod 'Firebase/Crash'
+pod 'Firebase/Database'
+pod 'Firebase/DynamicLinks'
+pod 'Firebase/Messaging'
+pod 'Firebase/RemoteConfig'
+pod 'Firebase/Storage'
+
+pod 'Bolts'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'

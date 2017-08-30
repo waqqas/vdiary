@@ -20,13 +20,13 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-    user: null,
+    lastLogin: null,
     children: {}
 })
 
 /* ------------- Reducers ------------- */
 
-export const updateUser = (state) => state.merge({user: Date.now()})
+export const updateUser = (state) => state.merge({lastLogin: Date.now()})
 
 export const setData = (state, {key, data}) => {
     // console.log('setData: ', key, data.key, data.val())

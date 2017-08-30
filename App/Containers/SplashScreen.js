@@ -1,13 +1,8 @@
 import React, {Component} from "react"
 import {Image, View} from "react-native"
-import {Button} from 'react-native-elements'
+import {Button, FormInput, FormLabel} from 'react-native-elements'
 import firebase from '../Libs/Firebase'
 import {NavigationActions} from 'react-navigation'
-const FBSDK = require('react-native-fbsdk');
-const {
-    LoginManager,
-} = FBSDK;
-
 // Styles
 import {Colors, Images} from '../Themes'
 import {connect} from 'react-redux'
@@ -27,9 +22,13 @@ class SplashScreen extends Component {
 
         this.state = {
             showLogin: false,
+            form: {
+                email: '',
+                password: ''
+            }
         }
 
-        this.loginUserWithFacebook = this.loginUserWithFacebook.bind(this)
+        this.loginUser = this.loginUser.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -51,23 +50,15 @@ class SplashScreen extends Component {
         }
     }
 
+    onValueChange(field, value) {
+        const {form} = this.state
+        form[field] = value
+        this.setState({form})
+    }
 
-    loginUserWithFacebook() {
-        LoginManager.logInWithReadPermissions(['public_profile']).then(
-            function(result) {
-                if (result.isCancelled) {
-                    alert('Login was cancelled');
-                } else {
-                    alert('Login was successful with permissions: '
-                        + result.grantedPermissions.toString());
-                }
-            },
-            function(error) {
-                alert('Login failed with error: ' + error);
-            }
-        );
-
-        //this.props.loginUserWithFacebook()
+    loginUser() {
+        const {form} = this.state
+        this.props.loginUser(form.email, form.password)
     }
 
     render() {
@@ -80,9 +71,14 @@ class SplashScreen extends Component {
             }]}>
                 <Image source={Images.logo} style={styles.logo} resizeMode='cover'/>
                 {showLogin && (<View style={styles.form}>
-                    <Button style={{marginTop: 10}} backgroundColor={Colors.facebook}
-                            title='Login with Facebook'
-                            onPress={this.loginUserWithFacebook}/>
+                    <FormLabel>Email</FormLabel>
+                    <FormInput autoCapitalize='none' keyboardType='email-address' onChangeText={this.onValueChange.bind(this, 'email')} value={this.state.form.email}/>
+                    <FormLabel>Password</FormLabel>
+                    <FormInput secureTextEntry onChangeText={this.onValueChange.bind(this, 'password')}
+                               value={this.state.form.password}/>
+                    <Button style={{marginTop: 10}} backgroundColor={Colors.green}
+                            title='Login'
+                            onPress={this.loginUser}/>
                 </View>)}
             </View>
         )
@@ -97,7 +93,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    loginUserWithFacebook: () => dispatch(AuthActions.loginUserWithFacebook())
+    loginUser: (email, password) => dispatch(AuthActions.loginUser(email, password))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplashScreen)

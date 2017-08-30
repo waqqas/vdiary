@@ -7,7 +7,7 @@ const REDUX_PERSIST = {
     reducerVersion: '1.0',
     storeConfig: {
         storage: AsyncStorage,
-        whitelist: ['auth'],
+        whitelist: [],
         transforms: [immutablePersistenceTransform]
     }
 }
