@@ -21,7 +21,9 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
     lastLogin: null,
-    children: {}
+    children: {},
+    vcards: {},     // for a single chile
+    ages: {}
 })
 
 /* ------------- Reducers ------------- */

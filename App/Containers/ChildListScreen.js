@@ -48,11 +48,10 @@ class ChildListScreen extends Component {
     componentDidMount() {
         const currentUser = firebase.auth().currentUser
 
-        console.log('user: ', currentUser)
-
-        this.childrenListRef = firebase.database().ref(`children/${currentUser.uid}`)
-
-        this.props.addRef('children', this.childrenListRef)
+        if(currentUser){
+            this.childrenListRef = firebase.database().ref(`children/${currentUser.uid}`)
+            this.props.addRef('children', this.childrenListRef)
+        }
 
         this.props.navigation.setParams({
             onLeftButtonPress: this.onLeftButtonPress.bind(this),

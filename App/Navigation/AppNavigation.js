@@ -7,13 +7,15 @@ import VaccinationCardScreen from "../Containers/VaccinationCardScreen";
 import Drawer from "../Containers/Drawer";
 import ChildListScreen from "../Containers/ChildListScreen";
 import AddChildScreen from "../Containers/AddChildScreen";
+import AddItemScreen from "../Containers/AddItemScreen";
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
     SplashScreen: {screen: SplashScreen},
     ChildListScreen: {screen: ChildListScreen},
     AddChildScreen: {screen: AddChildScreen},
-    VaccinationCardScreen: {screen: VaccinationCardScreen}
+    VaccinationCardScreen: {screen: VaccinationCardScreen},
+    AddItemScreen: {screen: AddItemScreen}
 }, {
     // Default config for all screens
     headerMode: 'float',
