@@ -6,7 +6,8 @@ export default {
         databaseURL: 'https://vaccinationdiary.firebaseio.com',
         projectId: 'vaccinationdiary',
         storageBucket: '',
-        messagingSenderId: '25539834470'
+        messagingSenderId: '25539834470',
+        persistence: true
     },
     facebook: {
         appId: '2157727797793884',

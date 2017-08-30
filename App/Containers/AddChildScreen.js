@@ -1,7 +1,8 @@
 import React, {Component} from "react"
 import {View} from "react-native"
-import { Header, FormLabel, FormInput } from 'react-native-elements'
+import { Header, FormLabel, FormInput, ButtonGroup } from 'react-native-elements'
 import {connect} from 'react-redux'
+import _ from 'lodash'
 // Styles
 import {Colors} from '../Themes'
 import styles from './Styles/AddChildScreenStyle'
@@ -39,10 +40,13 @@ class AddChildScreen extends Component {
 
         this.state = {
             form: {
-                name: null
+                name: null,
+                gender: null,
+                dob: null
             },
             adding: false
         }
+        this.gender = ['male', 'female']
     }
 
     componentDidMount() {
@@ -67,6 +71,13 @@ class AddChildScreen extends Component {
         this.setState({form})
     }
 
+    onIndexChange(field, index)
+    {
+        const {form} = this.state
+        form[field] = this[field][index]
+        this.setState({form})
+    }
+
     render() {
         return (
             <View style={[styles.mainContainer, {
@@ -76,6 +87,11 @@ class AddChildScreen extends Component {
                 <View style={styles.container}>
                     <FormLabel>Name</FormLabel>
                     <FormInput onChangeText={this.onValueChange.bind(this, 'name')}/>
+                    <ButtonGroup
+                        onPress={this.onIndexChange.bind(this, 'gender')}
+                        selectedIndex={this.gender.indexOf(this.state.form.gender)}
+                        buttons={this.gender.map((value) => (_.upperFirst(value)))}
+                        containerStyle={{height: 50}} />
                 </View>
             </View>
         )

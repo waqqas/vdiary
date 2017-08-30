@@ -74,7 +74,7 @@ class Drawer extends Component {
     }
 
     logoutUser() {
-        this.props.logoutUser(null)
+        this.props.logoutUser()
         this.props.navigation.navigate('SplashScreen')
     }
 
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logoutUser: (user) => dispatch(AuthActions.logoutUser())
+        logoutUser: () => dispatch(AuthActions.logoutUser())
     }
 }
 
