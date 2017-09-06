@@ -94,11 +94,11 @@ export default class ItemPicker extends Component {
                         <View style={styles.container}>
                             <List>
                                 {React.Children.map(this.props.children,
-                                    (child, i) => {
-                                        const selected = this.isSelected(i)
+                                    (child) => {
+                                        const selected = this.isSelected(child.key)
                                         return React.cloneElement(child, {
                                             selected,
-                                            onItemPress: this.onItemPress.bind(this, child, i)
+                                            onItemPress: this.onItemPress.bind(this, child, child.key)
                                         })
                                     })}
                             </List>

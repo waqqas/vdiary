@@ -121,15 +121,16 @@ class AddItemScreen extends Component {
         this.setState({picker})
     }
 
-    onDonePress(field, selectedIndices) {
+    onDonePress(formField, propName, selected) {
 
-        const {form} = this.state
-        form[field] = _.filter(this.props[field], (item, index) => (selectedIndices.indexOf(index) !== -1))
+        let {form} = this.state
+        form[formField] = _.pick(this.props[propName], selected)
+
         this.setState({form})
     }
 
     getVaccineLabel() {
-        return this.state.form.vaccines.map((vaccine) => (vaccine.shortName)).join(',')
+        return _.map(this.state.form.vaccines, 'shortName').join(',')
     }
 
     render() {
@@ -141,7 +142,7 @@ class AddItemScreen extends Component {
                 <View style={styles.container}>
                     <FormLabel>{this.state.form.name}</FormLabel>
 
-                    <ItemPicker onDonePress={this.onDonePress.bind(this, 'dueAge')}>
+                    <ItemPicker onDonePress={this.onDonePress.bind(this, 'dueAge', 'ages')}>
                         {_.map(this.props.ages, (age, key) => {
                             return (<SelectListItem key={key} item={age}/>)
                         })}
@@ -171,7 +172,7 @@ class AddItemScreen extends Component {
                         titleIOS='Pick given date'
                     />
 
-                    <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines')}
+                    <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
                                 label={this.getVaccineLabel()} multiple>
                         {_.map(this.props.vaccines, (vaccine, key) => {
                             return (<VaccineListItem key={key} item={vaccine}/>)
