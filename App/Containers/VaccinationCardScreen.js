@@ -43,9 +43,9 @@ class VaccinationCardScreen extends Component {
 
     componentDidMount() {
         const currentUser = firebase.auth().currentUser
-        const {child} = this.props.navigation.state.params
+        const {childKey} = this.props.navigation.state.params
 
-        this.ref = firebase.database().ref(`vcards/${currentUser.uid}/${child.key}`)
+        this.ref = firebase.database().ref(`vcards/${currentUser.uid}/${childKey}`)
 
         this.props.addRef('vcards', this.ref)
 
@@ -64,8 +64,8 @@ class VaccinationCardScreen extends Component {
     }
 
     onRightButtonPress() {
-        const {child} = this.props.navigation.state.params
-        this.props.navigation.navigate('AddItemScreen', {child})
+        const {childKey} = this.props.navigation.state.params
+        this.props.navigation.navigate('AddItemScreen', {childKey})
     }
 
     onShowItem(item) {

@@ -85,8 +85,8 @@ class Drawer extends Component {
         )
     }
 
-    onShowChild(child) {
-        this.props.navigation.navigate('VaccinationCardScreen', {child})
+    onShowChild(childKey) {
+        this.props.navigation.navigate('VaccinationCardScreen', {childKey})
     }
 
     renderChild(child, sectionId, key) {
@@ -94,7 +94,7 @@ class Drawer extends Component {
             <ListItem
                 style={styles.listItem}
                 chevronColor={Colors.snow}
-                onPress={this.onShowChild.bind(this, child)}
+                onPress={this.onShowChild.bind(this, key)}
                 key={key}
                 title={child.name}
                 titleContainerStyle={styles.listTitleContainer}

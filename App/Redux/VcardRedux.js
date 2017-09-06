@@ -6,8 +6,8 @@ import Immutable from 'seamless-immutable'
 const {Types, Creators} = createActions({
     logoutUser: null,
     selectVcard: ['vcard'],
-    addVcard: ['child', 'form'],
-    updateVcard: ['child', 'form']
+    addVcard: ['childKey', 'form'],
+    updateVcard: ['childKey', 'form']
 })
 
 export const VcardTypes = Types

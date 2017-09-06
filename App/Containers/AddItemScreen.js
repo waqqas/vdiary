@@ -82,9 +82,9 @@ class AddItemScreen extends Component {
     }
 
     onRightButtonPress() {
-        const {child} = this.props.navigation.state.params
+        const {childKey} = this.props.navigation.state.params
 
-        this.props.addVcard(child, this.state.form)
+        this.props.addVcard(childKey, this.state.form)
         this.props.navigation.goBack()
     }
 
@@ -196,7 +196,7 @@ const mapDispatchToProps = (dispatch) => ({
     addRef: (key, ref) => dispatch(FirebaseActions.addRef(key, ref)),
     removeRef: (ref) => dispatch(FirebaseActions.removeRef(ref)),
 
-    addVcard: (child, form) => dispatch(VcardActions.addVcard(child, form))
+    addVcard: (childKey, form) => dispatch(VcardActions.addVcard(childKey, form))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddItemScreen)
