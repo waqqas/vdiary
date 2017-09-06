@@ -107,6 +107,13 @@ const ApplicationStyles = {
             width: Metrics.screenWidth - 100
         }
     },
+    drawer:{
+        drawerHeading: {
+            marginVertical: Metrics.marginVertical,
+            fontFamily: Fonts.type.bold,
+            fontSize: Fonts.size.h5
+        }
+    },
     darkLabelContainer: {
         padding: Metrics.smallMargin,
         paddingBottom: Metrics.doubleBaseMargin,

@@ -142,6 +142,13 @@ class AddItemScreen extends Component {
                 <View style={styles.container}>
                     <FormLabel>{this.state.form.name}</FormLabel>
 
+                    <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
+                                label={this.getVaccineLabel()} multiple>
+                        {_.map(this.props.vaccines, (vaccine, key) => {
+                            return (<VaccineListItem key={key} item={vaccine}/>)
+                        })}
+                    </ItemPicker>
+
                     <ItemPicker onDonePress={this.onDonePress.bind(this, 'dueAge', 'ages')}>
                         {_.map(this.props.ages, (age, key) => {
                             return (<SelectListItem key={key} item={age}/>)
@@ -172,12 +179,7 @@ class AddItemScreen extends Component {
                         titleIOS='Pick given date'
                     />
 
-                    <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
-                                label={this.getVaccineLabel()} multiple>
-                        {_.map(this.props.vaccines, (vaccine, key) => {
-                            return (<VaccineListItem key={key} item={vaccine}/>)
-                        })}
-                    </ItemPicker>
+
 
                 </View>
             </View>

@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Image, ListView, View} from 'react-native';
+import {Image, ListView, View, Text} from 'react-native';
 import {NavigationActions} from 'react-navigation'
 import {List, ListItem} from 'react-native-elements'
 import firebase from '../Libs/Firebase'
 // Styles
 import styles from './Styles/DrawerStyle'
 import AuthActions from '../Redux/AuthRedux'
-import {Colors} from '../Themes'
+import {Colors, Metrics} from '../Themes'
 
 
 class Drawer extends Component {
@@ -97,13 +97,13 @@ class Drawer extends Component {
                 onPress={this.onShowChild.bind(this, key)}
                 key={key}
                 title={child.name}
-                titleContainerStyle={styles.listTitleContainer}
-                titleStyle={styles.listTitle}
+                titleStyle={styles.menuTitle}
+                hideChevron
             />)
     }
 
     renderChildList() {
-        return (<List style={styles.listContainer}>
+        return (<List style={[styles.listContainer, {paddingVertical: Metrics.marginVertical}]}>
             <ListView
                 renderRow={this.renderChild.bind(this)}
                 dataSource={this.ds.cloneWithRows(this.props.children)}
@@ -114,7 +114,8 @@ class Drawer extends Component {
 
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <View style={[styles.mainContainer,{paddingVertical: Metrics.doubleBaseMargin, paddingHorizontal: Metrics.paddingHorizontal}]}>
+                <Text style={styles.drawerHeading}>Children</Text>
                 {this.renderChildList()}
                 <List>
                     <ListView enableEmptySections renderRow={this.renderMenu.bind(this)}
