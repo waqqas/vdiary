@@ -1,6 +1,6 @@
 import React, {Component} from "react"
-import {Text, TouchableOpacity, View, Picker} from "react-native"
-import {ButtonGroup, FormInput, FormLabel, Header} from 'react-native-elements'
+import {Picker, Text, TouchableOpacity, View} from "react-native"
+import {FormLabel, Header, ListItem} from 'react-native-elements'
 import {connect} from 'react-redux'
 import _ from 'lodash'
 import moment from 'moment'
@@ -12,6 +12,7 @@ import styles from './Styles/AddItemScreenStyle'
 import NavItem from '../Components/NavItem'
 import FirebaseActions from '../Redux/FirebaseRedux'
 import VcardActions from '../Redux/VcardRedux'
+import ItemPicker from '../Components/ItemPicker'
 
 class AddItemScreen extends Component {
     static navigationOptions = ({navigation}) => {
@@ -62,9 +63,11 @@ class AddItemScreen extends Component {
     }
 
     componentDidMount() {
-        this.ref = firebase.database().ref(`ages`)
+        this.agesRef = firebase.database().ref('ages')
+        this.props.addRef('ages', this.agesRef)
 
-        this.props.addRef('ages', this.ref)
+        this.vaccinesRef = firebase.database().ref('vaccines')
+        this.props.addRef('vaccines', this.vaccinesRef)
 
         this.props.navigation.setParams({
             onLeftButtonPress: this.onLeftButtonPress.bind(this),
@@ -116,6 +119,16 @@ class AddItemScreen extends Component {
         this.setState({picker})
     }
 
+    onDonePress(field, selectedIndices) {
+        const {form} = this.state
+        form[field] = _.filter(this.props[field], (item, index) => (selectedIndices.indexOf(index) !== -1))
+        this.setState({form})
+    }
+
+    getVaccineLabel() {
+        return this.state.form.vaccines.map((vaccine) => (vaccine.shortName)).join(',')
+    }
+
     render() {
         return (
             <View style={[styles.mainContainer, {
@@ -128,7 +141,8 @@ class AddItemScreen extends Component {
                     <Picker
                         selectedValue={this.state.form.dueAge}
                         onValueChange={this.onValueChange.bind(this, 'dueAge')}>
-                        {_.map(this.props.ages, (age, key) => (<Picker.Item key={key} label={age.label} value={age.value} />))}
+                        {_.map(this.props.ages, (age, key) => (
+                            <Picker.Item key={key} label={age.label} value={age.value}/>))}
                     </Picker>
 
                     <FormLabel>Due date</FormLabel>
@@ -155,6 +169,13 @@ class AddItemScreen extends Component {
                         titleIOS='Pick given date'
                     />
 
+                    <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines')}
+                                label={this.getVaccineLabel()}>
+                        {_.map(this.props.vaccines, (vaccine, key) => {
+                            return (<ListItem key={key} title={vaccine.shortName} subtitle={vaccine.name}/>)
+                        })}
+                    </ItemPicker>
+
                 </View>
             </View>
         )
@@ -163,7 +184,8 @@ class AddItemScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ages: state.firebase.ages
+        ages: state.firebase.ages,
+        vaccines: state.firebase.vaccines
     }
 }
 
