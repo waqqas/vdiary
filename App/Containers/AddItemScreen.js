@@ -126,11 +126,25 @@ class AddItemScreen extends Component {
         let {form} = this.state
         form[formField] = _.pick(this.props[propName], selected)
 
+        switch (formField) {
+            case 'dueAge':
+                break
+        }
+
         this.setState({form})
     }
 
     getVaccineLabel() {
         return _.map(this.state.form.vaccines, 'shortName').join(',')
+    }
+
+    getLabel(formField){
+        if(this.state.form[formField]){
+            return _.map(this.state.form[formField], 'label')
+        }
+        else{
+            return ''
+        }
     }
 
     render() {
@@ -143,14 +157,18 @@ class AddItemScreen extends Component {
                     <FormLabel>{this.state.form.name}</FormLabel>
 
                     <FormLabel>Vaccines</FormLabel>
-                    <ItemPicker placeholder="Vaccines" title='Select Vaccines' onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
-                                label={this.getVaccineLabel()} multiple>
+                    <ItemPicker title='Select Vaccines'
+                                onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
+                                label={this.getVaccineLabel()} multiple buttonProps={{backgroundColor: Colors.green}}>
                         {_.map(this.props.vaccines, (vaccine, key) => {
                             return (<VaccineListItem key={key} item={vaccine}/>)
                         })}
                     </ItemPicker>
 
-                    <ItemPicker onDonePress={this.onDonePress.bind(this, 'dueAge', 'ages')}>
+                    <FormLabel>Due Age</FormLabel>
+                    <ItemPicker label={this.getLabel('dueAge')}
+                                onDonePress={this.onDonePress.bind(this, 'dueAge', 'ages')}
+                                buttonProps={{backgroundColor: Colors.green}}>
                         {_.map(this.props.ages, (age, key) => {
                             return (<SelectListItem key={key} item={age}/>)
                         })}
@@ -179,7 +197,6 @@ class AddItemScreen extends Component {
                         onCancel={this.hideDatePicker.bind(this, 'givenDate')}
                         titleIOS='Pick given date'
                     />
-
 
 
                 </View>

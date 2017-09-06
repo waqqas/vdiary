@@ -15,7 +15,8 @@ export default class ItemPicker extends Component {
         placeholder: PropTypes.string,
         onDonePress: PropTypes.func,
         label: PropTypes.string,
-        multiple: PropTypes.bool
+        multiple: PropTypes.bool,
+        buttonProps: PropTypes.object
     }
 
     static defaultProps = {
@@ -25,7 +26,8 @@ export default class ItemPicker extends Component {
         label: '',
         onDonePress: () => {
         },
-        multiple: false
+        multiple: false,
+        buttonProps: {}
     }
 
 
@@ -70,7 +72,7 @@ export default class ItemPicker extends Component {
     render() {
         return (
             <View>
-                <Button title={this.props.label}
+                <Button title={this.props.label} style={styles.button} {...this.props.buttonProps}
                         onPress={() => this.setState({modalVisible: !this.state.modalVisible})}>
                 </Button>
                 <Modal
