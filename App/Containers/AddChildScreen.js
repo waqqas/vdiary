@@ -27,9 +27,9 @@ class AddChildScreen extends Component {
         const header = (
             <Header
                 outerContainerStyles={styles.navBarContainer}
-                leftComponent={<NavItem onPress={onLeftButtonPress} iconName='angle-left'/>}
+                leftComponent={<NavItem onPress={onLeftButtonPress} iconName='chevron-left'/>}
                 centerComponent={{text: title, style: styles.navTitle}}
-                rightComponent={<NavItem onPress={onRightButtonPress} iconName='download'/>}
+                rightComponent={<NavItem onPress={onRightButtonPress} text='Add'/>}
             />)
 
         return ({

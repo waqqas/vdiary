@@ -142,7 +142,8 @@ class AddItemScreen extends Component {
                 <View style={styles.container}>
                     <FormLabel>{this.state.form.name}</FormLabel>
 
-                    <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
+                    <FormLabel>Vaccines</FormLabel>
+                    <ItemPicker placeholder="Vaccines" title='Select Vaccines' onDonePress={this.onDonePress.bind(this, 'vaccines', 'vaccines')}
                                 label={this.getVaccineLabel()} multiple>
                         {_.map(this.props.vaccines, (vaccine, key) => {
                             return (<VaccineListItem key={key} item={vaccine}/>)

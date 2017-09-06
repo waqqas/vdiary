@@ -92,6 +92,7 @@ class ChildListScreen extends Component {
                 title={child.name}
                 titleContainerStyle={styles.listTitleContainer}
                 titleStyle={styles.listTitle}
+                hideChevron
             />)
     }
 
