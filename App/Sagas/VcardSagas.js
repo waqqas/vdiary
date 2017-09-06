@@ -12,6 +12,9 @@ const addVcard = function* addVcard(firebase, {childKey, form}) {
     let data = _.omitBy(form, _.isObject)
     data.vaccines = _.mapValues(form.vaccines, () => true)
     data.dueAge = _.mapValues (form.dueAge, () => true)
+    data.dueDate = form.dueDate.toISOString()
+    data.lastUpdated = firebase.database.ServerValue.TIMESTAMP
+
 
     updates[`${key}/${newKey}`] = data
 

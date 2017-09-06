@@ -65,11 +65,17 @@ class AddItemScreen extends Component {
     }
 
     componentDidMount() {
+        const {childKey} = this.props.navigation.state.params
+        const userId = firebase.auth().currentUser.uid
+
         this.agesRef = firebase.database().ref('ages')
         this.props.addRef('ages', this.agesRef)
 
         this.vaccinesRef = firebase.database().ref('vaccines')
         this.props.addRef('vaccines', this.vaccinesRef)
+
+        this.currentChildRef = firebase.database().ref(`children/${userId}/${childKey}`)
+        this.props.addRef('currentChild', this.currentChildRef)
 
         this.props.navigation.setParams({
             onLeftButtonPress: this.onLeftButtonPress.bind(this),
@@ -124,10 +130,13 @@ class AddItemScreen extends Component {
     onDonePress(formField, propName, selected) {
 
         let {form} = this.state
-        form[formField] = _.pick(this.props[propName], selected)
+        const value = _.pick(this.props[propName], selected)
+        form[formField] = value
 
         switch (formField) {
             case 'dueAge':
+                const age = value[selected]
+                form['dueDate'] = moment(this.props.child.dob).add(age.value, 'day').utcOffset(0).toDate()
                 break
         }
 
@@ -140,7 +149,7 @@ class AddItemScreen extends Component {
 
     getLabel(formField){
         if(this.state.form[formField]){
-            return _.map(this.state.form[formField], 'label')
+            return _.map(this.state.form[formField], 'label').join('')
         }
         else{
             return ''
@@ -208,7 +217,8 @@ class AddItemScreen extends Component {
 const mapStateToProps = (state) => {
     return {
         ages: state.firebase.ages,
-        vaccines: state.firebase.vaccines
+        vaccines: state.firebase.vaccines,
+        child: state.firebase.currentChild
     }
 }
 

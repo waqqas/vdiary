@@ -82,9 +82,11 @@ class AddChildScreen extends Component {
         this.setState({form})
     }
 
-    onDatePicked(field, value) {
+    onDatePicked(field, date) {
         const {form} = this.state
-        form[field] = value
+        date.setUTCHours(0, 0, 0, 0)
+
+        form[field] = date
         this.setState({form})
         this.hideDatePicker(field)
     }

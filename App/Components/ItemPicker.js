@@ -42,17 +42,23 @@ export default class ItemPicker extends Component {
         this.onDonePress = this.onDonePress.bind(this)
     }
 
-    onItemPress(item, index) {
+    onItemPress(item, key) {
 
         let selected = this.state.selected
 
-        const selectedIndex = selected.indexOf(index)
-        if (selectedIndex === -1) {
-            selected.push(index)
-        } else {
-            selected.splice(selectedIndex, 1)
+        if (this.props.multiple === true) {
+            const selectedKey = selected.indexOf(key)
+            if (selectedKey === -1) {
+                selected.push(key)
+            } else {
+                selected.splice(selectedKey, 1)
+            }
+        }
+        else {
+            selected = key
         }
         this.setState({selected}, () => {
+            // call done after the first selection
             if (this.props.multiple === false) {
                 this.onDonePress()
             }
@@ -65,8 +71,8 @@ export default class ItemPicker extends Component {
         this.props.onDonePress(this.state.selected)
     }
 
-    isSelected(index) {
-        return (this.state.selected.indexOf(index) !== -1)
+    isSelected(key) {
+        return (this.state.selected.indexOf(key) !== -1)
     }
 
     render() {
@@ -91,7 +97,8 @@ export default class ItemPicker extends Component {
                                 this.setState({modalVisible: !this.state.modalVisible})
                             }}/>}
                             centerComponent={{text: this.props.title, style: styles.navTitle}}
-                            rightComponent={this.props.multiple === true? <NavItem text='Done' onPress={this.onDonePress}/> :  null}
+                            rightComponent={this.props.multiple === true ?
+                                <NavItem text='Done' onPress={this.onDonePress}/> : null}
                         />
                         <View style={styles.container}>
                             <List>

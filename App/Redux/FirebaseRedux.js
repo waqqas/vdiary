@@ -24,7 +24,8 @@ export const INITIAL_STATE = Immutable({
     children: {},
     vcards: {},     // for a single chile
     ages: {},
-    vaccines: {}
+    vaccines: {},
+    currentChild: {}
 })
 
 /* ------------- Reducers ------------- */
