@@ -19,7 +19,7 @@ export default class NavItem extends Component {
     },
     text: '',
     iconName: '',
-    iconType: 'font-awesome'
+    iconType: 'material-community'
   }
 
   render() {

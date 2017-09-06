@@ -14,6 +14,7 @@ import FirebaseActions from '../Redux/FirebaseRedux'
 import VcardActions from '../Redux/VcardRedux'
 import ItemPicker from '../Components/ItemPicker'
 import VaccineListItem from "../Components/VaccineListItem";
+import SelectListItem from "../Components/SelectListItem";
 
 class AddItemScreen extends Component {
     static navigationOptions = ({navigation}) => {
@@ -31,9 +32,9 @@ class AddItemScreen extends Component {
         const header = (
             <Header
                 outerContainerStyles={styles.navBarContainer}
-                leftComponent={<NavItem onPress={onLeftButtonPress} iconName='angle-left'/>}
+                leftComponent={<NavItem onPress={onLeftButtonPress} iconName='chevron-left'/>}
                 centerComponent={{text: title, style: styles.navTitle}}
-                rightComponent={<NavItem onPress={onRightButtonPress} iconName='download'/>}
+                rightComponent={<NavItem onPress={onRightButtonPress} text='Add'/>}
             />)
 
         return ({
@@ -140,12 +141,11 @@ class AddItemScreen extends Component {
                 <View style={styles.container}>
                     <FormLabel>{this.state.form.name}</FormLabel>
 
-                    <Picker
-                        selectedValue={this.state.form.dueAge}
-                        onValueChange={this.onValueChange.bind(this, 'dueAge')}>
-                        {_.map(this.props.ages, (age, key) => (
-                            <Picker.Item key={key} label={age.label} value={age.value}/>))}
-                    </Picker>
+                    <ItemPicker onDonePress={this.onDonePress.bind(this, 'dueAge')}>
+                        {_.map(this.props.ages, (age, key) => {
+                            return (<SelectListItem key={key} item={age}/>)
+                        })}
+                    </ItemPicker>
 
                     <FormLabel>Due date</FormLabel>
                     <TouchableOpacity onPress={this.showDatePicker.bind(this, 'dueDate')}>

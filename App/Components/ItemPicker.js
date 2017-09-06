@@ -15,7 +15,7 @@ export default class ItemPicker extends Component {
         placeholder: PropTypes.string,
         onDonePress: PropTypes.func,
         label: PropTypes.string,
-        multiple: PropTypes.boolean
+        multiple: PropTypes.bool
     }
 
     static defaultProps = {
@@ -85,11 +85,11 @@ export default class ItemPicker extends Component {
                     }]}>
                         <Header
                             outerContainerStyles={styles.navBarContainer}
-                            leftComponent={<NavItem iconName='angle-left' onPress={() => {
+                            leftComponent={<NavItem iconName='chevron-left' onPress={() => {
                                 this.setState({modalVisible: !this.state.modalVisible})
                             }}/>}
                             centerComponent={{text: this.props.title, style: styles.navTitle}}
-                            rightComponent={<NavItem iconName='download' onPress={this.onDonePress}/>}
+                            rightComponent={this.props.multiple === true? <NavItem text='Done' onPress={this.onDonePress}/> :  null}
                         />
                         <View style={styles.container}>
                             <List>

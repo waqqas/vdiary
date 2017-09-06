@@ -69,7 +69,7 @@ const ApplicationStyles = {
         },
         navButtonText: {
             fontSize: Fonts.size.h5,
-            color: Colors.snow,
+            color: Colors.green,
             paddingLeft: Metrics.marginHorizontal
         },
         navTitle: {

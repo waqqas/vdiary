@@ -25,7 +25,7 @@ class ChildListScreen extends Component {
         const header = (
             <Header
                 outerContainerStyles={styles.navBarContainer}
-                leftComponent={<NavItem onPress={onLeftButtonPress} iconName='bars'/>}
+                leftComponent={<NavItem onPress={onLeftButtonPress} iconName='menu'/>}
                 centerComponent={{text: title, style: styles.navTitle}}
                 rightComponent={<NavItem onPress={onRightButtonPress} iconName='plus'/>}
             />)
