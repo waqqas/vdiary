@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {Picker, Text, TouchableOpacity, View} from "react-native"
-import {FormLabel, Header, ListItem} from 'react-native-elements'
+import {FormLabel, Header} from 'react-native-elements'
 import {connect} from 'react-redux'
 import _ from 'lodash'
 import moment from 'moment'
@@ -13,6 +13,7 @@ import NavItem from '../Components/NavItem'
 import FirebaseActions from '../Redux/FirebaseRedux'
 import VcardActions from '../Redux/VcardRedux'
 import ItemPicker from '../Components/ItemPicker'
+import VaccineListItem from "../Components/VaccineListItem";
 
 class AddItemScreen extends Component {
     static navigationOptions = ({navigation}) => {
@@ -120,6 +121,7 @@ class AddItemScreen extends Component {
     }
 
     onDonePress(field, selectedIndices) {
+
         const {form} = this.state
         form[field] = _.filter(this.props[field], (item, index) => (selectedIndices.indexOf(index) !== -1))
         this.setState({form})
@@ -170,9 +172,9 @@ class AddItemScreen extends Component {
                     />
 
                     <ItemPicker placeholder="Vaccines" onDonePress={this.onDonePress.bind(this, 'vaccines')}
-                                label={this.getVaccineLabel()}>
+                                label={this.getVaccineLabel()} multiple>
                         {_.map(this.props.vaccines, (vaccine, key) => {
-                            return (<ListItem key={key} title={vaccine.shortName} subtitle={vaccine.name}/>)
+                            return (<VaccineListItem key={key} item={vaccine}/>)
                         })}
                     </ItemPicker>
 
