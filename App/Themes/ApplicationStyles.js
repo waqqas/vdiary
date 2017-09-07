@@ -72,6 +72,11 @@ const ApplicationStyles = {
             color: Colors.green,
             paddingLeft: Metrics.marginHorizontal
         },
+        navButtonTextDisabled: {
+            fontSize: Fonts.size.h5,
+            color: Colors.steel,
+            paddingLeft: Metrics.marginHorizontal
+        },
         navTitle: {
             fontSize: Fonts.size.h5,
             color: Colors.green,
